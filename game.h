@@ -6,6 +6,9 @@ class Game {
     sf::RenderWindow mWindow;
     sf::RectangleShape mPlayer;
 
+    bool movePlatformRight = false;
+    bool movePlatformLeft = false;
+
     void processEvents();
     void update();
     void render();
@@ -14,4 +17,5 @@ class Game {
 public:
     Game();
     void run();
+    void handlePlayerInput(sf::Keyboard::Key, bool);
 };
