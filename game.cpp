@@ -2,18 +2,21 @@
 
 
 Game::Game() :
-    mWindow(sf::VideoMode(width, height), "Breakout", sf::Style::None | sf::Style::Titlebar | sf::Style::Close), 
-    mPlayer() {
+    mWindow(sf::VideoMode(width, height), "Breakout", sf::Style::None | sf::Style::Titlebar | sf::Style::Close)
+    , mPlayer()
+    , mBall() {
         mPlayer.setPosition(400.f, 900.f);
         mPlayer.setSize(sf::Vector2f(200, 20));
         mPlayer.setFillColor(sf::Color::White);
+        mBall.setPosition(475.f, 850.f);
+        mBall.setRadius(25.f);
+        mBall.setFillColor(sf::Color::Red);
 }
 
 
 void Game::run() {
     sf::Clock clock;
     while (mWindow.isOpen()) {
-        processEvents();
         processEvents();
         update();
         render();
@@ -23,13 +26,6 @@ void Game::run() {
 void Game::processEvents() {
     sf::Event event;
     while (mWindow.pollEvent(event)) {
-        /*
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-            handlePlayerInput(event.key.code);
-        } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-            handlePlayerInput(event.key.code);
-        }
-        */
         switch (event.type) {
             case sf::Event::Closed:
                 mWindow.close();
@@ -78,5 +74,6 @@ void Game::update() {
 void Game::render() {
     mWindow.clear();
     mWindow.draw(mPlayer);
+    mWindow.draw(mBall);
     mWindow.display();
 }

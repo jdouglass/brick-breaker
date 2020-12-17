@@ -5,6 +5,7 @@ class Game {
     const int height = 1000;
     sf::RenderWindow mWindow;
     sf::RectangleShape mPlayer;
+    sf::CircleShape mBall;
 
     bool movePlatformRight = false;
     bool movePlatformLeft = false;
