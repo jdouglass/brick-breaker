@@ -1,5 +1,8 @@
 #include "game.h"
-#include "platform.h"
+#include <iostream>
+
+const float Game::PlayerSpeed = 100.f;
+const sf::Time Game::TimePerFrame = sf::seconds(1.f/60.f);
 
 Game::Game() : window(sf::VideoMode(1000, 1000), "Brick Breaker", sf::Style::Close | sf::Style::Titlebar | sf::Style::None)
 , platform(), ball() {
@@ -13,12 +16,16 @@ Game::Game() : window(sf::VideoMode(1000, 1000), "Brick Breaker", sf::Style::Clo
 }
 
 void Game::run() {
-    sf::Clock clock;
-    sf::Time timeSinceLastUpdate = sf::Time::Zero;
+    sf::Clock clock; // might delete this
+    sf::Time timeSinceLastUpdate = sf::Time::Zero; // might delete this
     while (window.isOpen()) {
         processEvents();
-        timeSinceLastUpdate += clock.restart();
-        update();
+        timeSinceLastUpdate += clock.restart(); // might delete this
+        while (timeSinceLastUpdate > TimePerFrame) {
+            timeSinceLastUpdate -= TimePerFrame;
+            processEvents();
+            update(TimePerFrame);
+        }
         render();
     }
 }
@@ -47,18 +54,34 @@ void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed) {
         platformMovingRight = isPressed;
     } else if (key == sf::Keyboard::Left) {
         platformMovingLeft = isPressed;
+    } else if (key == sf::Keyboard::Space) {
+//        std::cout << "Space bar pressed" << std::endl;
+        isPlaying = true;
+        std::cout << isPlaying << std::endl;
     }
 }
 
-void Game::update() {
+void Game::update(sf::Time TimePerFrame) {
     sf::Vector2f platformMovement(0.f, 0.f);
-    if (platformMovingRight) {
-        platformMovement.x += 1.f;
+    sf::Vector2f platformPos = platform.getPosition();
+    sf::Vector2f ballMovement(0.f, 0.f);
+    if (isPlaying) {
+        if (platformMovingRight) {
+            if (platformPos.x >= 800) {
+                platformPos.x = 800.f;
+            } else {
+                platformMovement.x += 10.f;
+            }
+        }
+        if (platformMovingLeft) {
+            if (platformPos.x <= 0) {
+                platformPos.x = 0.f;
+            } else {
+                platformMovement.x -= 10.f;
+            }
+        }
+        platform.move(platformMovement);
     }
-    if (platformMovingLeft) {
-        platformMovement.x -= 1.f;
-    }
-    platform.move(platformMovement);
 }
 
 void Game::render() {
