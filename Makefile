@@ -1,4 +1,4 @@
-OBJS = main.o game.o platform.o ball.o
+OBJS = main.o ball.o
 CXX = g++
 CXXFLAGS = -Wall -std=c++14
 LDLIBS = -lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system

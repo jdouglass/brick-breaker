@@ -4,11 +4,12 @@
 #include <SFML/Graphics.hpp>
 
 class Platform {
-    sf::RectangleShape rectangle;
+    sf::RectangleShape platform;
+    const sf::Vector2f platformDimensions { 80.f, 20.f };
+    const float platformVelocity { 6.f };
 
 public:
-    Platform();
-    ~Platform();
+    Platform(float m_X, float m_Y);
 };
 
 #endif
