@@ -6,7 +6,7 @@ Ball::Ball(float m_X, float m_Y) : ball() {
     ball.setFillColor(sf::Color::Red);
 }
 
-sf::CircleShape Ball::getDrawableBall() {
+sf::CircleShape Ball::drawBall() {
     return ball;
 }
 

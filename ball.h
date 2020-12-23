@@ -11,7 +11,7 @@ class Ball {
 
 public:
     Ball(float m_X, float m_Y);
-    sf::CircleShape getDrawableBall();
+    sf::CircleShape drawBall();
 
     void update();
 };
