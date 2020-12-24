@@ -10,10 +10,10 @@ class Ball {
     sf::Vector2f velocity { -ballVelocity, -ballVelocity };
 
 public:
-    Ball(float m_X, float m_Y);
+    Ball();
     sf::CircleShape drawBall();
 
-    void update();
+    void moveBall();
 };
 
 #endif

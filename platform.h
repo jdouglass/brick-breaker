@@ -5,13 +5,12 @@
 
 class Platform {
     sf::RectangleShape platform;
-    const sf::Vector2f platformDimensions { 200.f, 20.f };
-    const float platformVelocity { 6.f };
 
 public:
     Platform();
     
     sf::RectangleShape drawPlatform();
+    void movePlatform(sf::Vector2f);
 };
 
 #endif

@@ -1,8 +1,8 @@
 #include "ball.h"
 
-Ball::Ball(float m_X, float m_Y) : ball() {
+Ball::Ball() : ball() {
     ball.setRadius(ballRadius);
-    ball.setPosition(m_X, m_Y);
+    ball.setPosition(475.f, 850.f);
     ball.setFillColor(sf::Color::Red);
 }
 
@@ -10,7 +10,7 @@ sf::CircleShape Ball::drawBall() {
     return ball;
 }
 
-void Ball::update() {
+void Ball::moveBall() {
     sf::Vector2f ballPos = ball.getPosition();
     ball.move(velocity);
     if (ballPos.x <= 0) {
