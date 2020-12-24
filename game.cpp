@@ -49,6 +49,8 @@ void Game::handlePlayerInput(sf::Keyboard::Key key, bool isPressed) {
 
 void Game::update(sf::Time TimePerFrame) {
     sf::Vector2f platformMovement(0.f, 0.f);
+    sf::Vector2f platformPosition = platform.getPosition();
+    sf::Vector2f ballPosition = ball.getPosition();
     if (isMovingRight) {
         platformMovement.x += 8.f;
     }
@@ -56,7 +58,7 @@ void Game::update(sf::Time TimePerFrame) {
         platformMovement.x -= 8.f;
     }
     platform.movePlatform(platformMovement);
-    ball.moveBall();
+    ball.moveBall(platformPosition);
 }
 
 void Game::render() {

@@ -13,7 +13,8 @@ public:
     Ball();
     sf::CircleShape drawBall();
 
-    void moveBall();
+    sf::Vector2f getPosition();
+    void moveBall(sf::Vector2f);
 };
 
 #endif

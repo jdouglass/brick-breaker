@@ -6,6 +6,10 @@ Platform::Platform() : platform() {
     platform.setPosition(sf::Vector2f(400, 900));
 }
 
+sf::Vector2f Platform::getPosition() {
+    return platform.getPosition();
+}
+
 sf::RectangleShape Platform::drawPlatform() {
     return platform;
 }

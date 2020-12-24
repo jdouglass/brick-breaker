@@ -11,6 +11,7 @@ public:
     
     sf::RectangleShape drawPlatform();
     void movePlatform(sf::Vector2f);
+    sf::Vector2f getPosition();
 };
 
 #endif
